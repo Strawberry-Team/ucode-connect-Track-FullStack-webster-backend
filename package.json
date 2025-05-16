@@ -8,6 +8,12 @@
   "scripts": {
     "build": "nest build",
     "setup:db": "ts-node src/db/setup-database.ts",
+    "migrate": "dotenv -e .env.development -- npx prisma migrate deploy",
+    "migrate:create": "dotenv -e .env.development -- npx prisma migrate dev",
+    "migrate:generate": "dotenv -e .env.development -- npx prisma generate",
+    "migrate:seed": "dotenv -e .env.development -- npx prisma db seed",
+    "migrate:reset": "npm run migrate && npm run migrate:generate && npm run build && dotenv -e .env.development -- npx prisma migrate reset --force",
+    "migrate:refresh": "npm run migrate:reset && npm run migrate:generate",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
     "start": "nest start",
     "start:dev": "nest start --watch",
