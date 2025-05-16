@@ -96,23 +96,6 @@ export class UsersService {
         });
     }
 
-    async findUserCompanies(userId: number): Promise<Company[]> {
-        const user = await this.findUserById(userId);
-        if (!user) {
-            throw new NotFoundException('User not found');
-        }
-        try {
-            const company =
-                await this.companiesService.findByOwnerId(userId);
-            return [company];
-        } catch (error) {
-            if (error instanceof NotFoundException) {
-                return [];
-            }
-            throw error;
-        }
-    }
-
     async updateUser(id: number, dto: UpdateUserDto): Promise<User> {
         const result = await this.usersRepository.update(id, dto);
         if (!result) {

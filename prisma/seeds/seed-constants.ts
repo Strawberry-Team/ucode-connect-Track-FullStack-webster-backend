@@ -12,7 +12,7 @@ export const SEEDS = {
         DEFAULT_AVATAR_PICTURE: 'default-avatar.png',
         AVATAR_MASK: 'user-avatar-*.png',
         AVATAR_COUNT: 30,
-        GENERATE_AVATARS: falses,
+        GENERATE_AVATARS: false,
         PROFILE_PICTURE_QUERY_POSTFIX: 'profile portrait person face',
         PROFILE_PICTURE_MASK: '_-user-profile-picture-*.png',
         PROFILE_PICTURE_ORIENTATION: 'squarish', // 'landscape' | 'portrait' | 'squarish'

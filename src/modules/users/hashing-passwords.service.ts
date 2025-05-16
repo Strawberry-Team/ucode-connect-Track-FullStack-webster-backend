@@ -1,6 +1,6 @@
 // src/models/users/passwords.service.ts
 import { Injectable } from '@nestjs/common';
-import { HashingService, HashType } from '../../common/services/hashing.service';
+import { HashingService, HashType } from '../../core/services/hashing.service';
 
 @Injectable()
 export class HashingPasswordsService {

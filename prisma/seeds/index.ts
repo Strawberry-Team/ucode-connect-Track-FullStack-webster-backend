@@ -7,8 +7,6 @@ import { ConfigService } from '@nestjs/config';
 import { UserRole } from '@prisma/client';
 import { HashingService } from '../../src/core/services/hashing.service';
 import { HashingPasswordsService } from '../../src/modules/users/hashing-passwords.service';
-import {EmailService} from "../../src/shared/email/email.service";
-import {GoogleOAuthService} from "../../src/shared/google/google-oauth.service";
 import storageConfig from '../../src/config/storage.config';
 import appConfig from '../../src/config/app.config';
 import { SEEDS } from './seed-constants';
@@ -76,8 +74,6 @@ async function start() {
         const userService = new UsersService(
             new UsersRepository(dbService),
             passwordService);
-        const googleOAuthService = new GoogleOAuthService(configService);
-        const emailService = new EmailService(configService, googleOAuthService);
 
         const seeder = new Seeder(
             dbService,

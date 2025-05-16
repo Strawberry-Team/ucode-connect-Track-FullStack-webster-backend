@@ -1,4 +1,4 @@
-// src/models/users/users.controller.ts
+// src/modules/users/users.controller.ts
 import {
     Controller,
     UseInterceptors,
@@ -17,10 +17,10 @@ import { User } from './entities/user.entity';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { UsersService } from './users.service';
 import { Express } from 'express';
-import { createFileUploadInterceptor } from '../common/interceptor/file-upload.interceptor';
-import { AvatarConfig } from '../config/avatar.config';
+import { createFileUploadInterceptor } from '../../core/interceptor/file-upload.interceptor';
+import { AvatarConfig } from '../../config/avatar.config';
 import { AccountOwnerGuard } from './guards/account-owner.guard';
-import { UserId } from '../common/decorators/user.decorator';
+import { UserId } from '../../core/decorators/user.decorator';
 import { UpdateUserPasswordDto } from './dto/update-user-password.dto';
 import {
     ApiBody,
