@@ -1,6 +1,6 @@
 ---
 description: 
-globs: **/*.ts, **/*.d.ts
+globs: 
 alwaysApply: false
 ---
 # TypeScript Best Practices

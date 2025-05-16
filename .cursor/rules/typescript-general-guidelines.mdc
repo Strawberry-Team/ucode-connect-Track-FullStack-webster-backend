@@ -1,6 +1,7 @@
 ---
 description: Applies general TypeScript coding standards across the project, including naming conventions, function structure, data handling, and exception handling.
 globs: **/*.ts
+alwaysApply: false
 ---
 - Use English for all code and documentation.
 - Always declare the type of each variable and function (parameters and return value).
