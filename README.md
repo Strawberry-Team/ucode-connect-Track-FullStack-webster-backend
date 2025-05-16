@@ -64,6 +64,11 @@ In the examples of all commands in the text `<env>` is the name of the environme
     ```
 10. Application will be launched on [http://localhost:8080/](http://localhost:8080/).
 
+## 📬 Postman
+To use the predefined settings for Postman, import the file [webster.postman_collection.json](/docs/webster.postman_collection.json).
+
+![postman_example](/docs/postman.png)
+
 ## 🐋 Docker
 Environment variables are taken from `.env.development` file. You can start containers with the command:
 ```
