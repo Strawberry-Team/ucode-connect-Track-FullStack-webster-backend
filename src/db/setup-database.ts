@@ -60,31 +60,6 @@ async function configureMainDatabase(connection: Connection): Promise<string> {
     return config.database.username;
 }
 
-async function configureTestDatabase(
-    connection: Connection,
-    appUsername: string,
-): Promise<void> {
-    const { default: testDatabaseConfig } = await import(
-        '../config/database.test.config'
-    );
-    const testConfig = testDatabaseConfig();
-
-    if (!testConfig.database.name) {
-        console.log(
-            'Test database configuration not found or incomplete, skipping test database setup.',
-        );
-        return;
-    }
-
-    const testDbName = testConfig.database.name;
-    console.log(`Setting up test database "${testDbName}"...`);
-
-    await createDatabase(connection, testDbName);
-    await grantPrivileges(connection, testDbName, appUsername);
-
-    console.log(`Test database "${testDbName}" setup completed successfully.`);
-}
-
 async function setupDatabase(): Promise<void> {
     let connection: Connection | null = null;
 
@@ -96,9 +71,7 @@ async function setupDatabase(): Promise<void> {
             password: rootConfig.password,
         });
 
-        const appUsername = await configureMainDatabase(connection);
-
-        await configureTestDatabase(connection, appUsername);
+        await configureMainDatabase(connection);
 
         await connection.query(`FLUSH PRIVILEGES`);
         console.log('All privileges have been flushed successfully.');

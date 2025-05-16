@@ -79,8 +79,8 @@ async function bootstrap() {
     );
 
     const configAPIDoc = new DocumentBuilder()
-        .setTitle('uevent API')
-        .setDescription('The uevent API documentation')
+        .setTitle('Webster API')
+        .setDescription('The Webster API documentation')
         .setVersion('1.0')
         .addBearerAuth(
             {
@@ -118,7 +118,7 @@ async function bootstrap() {
             tryItOutEnabled: false, // whether to activate the test mode automatically
             displayRequestDuration: true,
         },
-        customSiteTitle: 'Uevent API',
+        customSiteTitle: 'Webster API',
         customfavIcon: `./project/${logoFileName}`,
     });
 
