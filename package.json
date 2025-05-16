@@ -6,6 +6,10 @@
   "private": true,
   "license": "UNLICENSED",
   "scripts": {
+    "docker:up": "docker-compose --env-file .env.development up -d",
+    "docker:view": "docker ps -a",
+    "docker:stop": "docker-compose stop",
+    "docker:down": "docker-compose down -v",
     "build": "nest build",
     "setup:db": "ts-node src/db/setup-database.ts",
     "migrate": "dotenv -e .env.development -- npx prisma migrate deploy",
@@ -99,5 +103,8 @@
     ],
     "coverageDirectory": "../coverage",
     "testEnvironment": "node"
-  }
+  },
+  "prisma": {
+        "seed": "node dist/prisma/seeds/index.js"
+    }
 }
