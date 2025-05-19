@@ -1,4 +1,4 @@
-// src/config/database.app.config.ts
+// src/config/database.database.config.ts
 import * as dotenv from 'dotenv';
 import * as dotenvExpand from 'dotenv-expand';
 

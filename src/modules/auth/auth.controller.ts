@@ -31,6 +31,9 @@ import {
     getSchemaPath,
 } from '@nestjs/swagger';
 import { User } from '../users/entities/user.entity';
+import { Public } from 'src/core/decorators/public.decorator';
+import { GoogleAuthGuard } from './guards/google-auth.guards';
+import { AuthGuard } from '@nestjs/passport';
 
 @Controller('auth')
 @ApiTags('Auth')
@@ -591,5 +594,40 @@ export class AuthController {
         @UserId() userId: number,
     ) {
         return this.authService.confirmNewPassword(newPasswordDto, userId);
+    }
+
+    @Public()
+    @Get('google/login')
+    @UseGuards(AuthGuard('google'))
+    @ApiOperation({ summary: 'Initiate Google OAuth2 login flow' })
+    @ApiResponse({
+        status: HttpStatus.FOUND,
+        description: 'Redirects to Google for authentication.',
+    })
+    async googleOAuthLogin() {
+    }
+
+    @Public()
+    @Get('google/callback')
+    @UseGuards(AuthGuard('google'))
+    @ApiOperation({ summary: 'Handle Google OAuth2 callback' })
+    @ApiResponse({
+        status: HttpStatus.OK,
+        description: 'Successfully authenticated with Google. Returns user and tokens.',
+        schema: {
+            type: 'object',
+            properties: {
+                user: { $ref: getSchemaPath(User) },
+                accessToken: { type: 'string' },
+                refreshToken: { type: 'string' },
+            },
+        },
+    })
+    @ApiResponse({
+        status: HttpStatus.UNAUTHORIZED,
+        description: 'Failed to authenticate with Google.',
+    })
+    async googleOAuthCallback(@Req() req: ExpressRequest) {
+        return req.user;
     }
 }

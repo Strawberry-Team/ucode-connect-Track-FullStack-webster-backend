@@ -12,20 +12,9 @@ export default () => {
         google: {
             clientId: String(validateEnv('GOOGLE_CLIENT_ID')),
             clientSecret: String(validateEnv('GOOGLE_CLIENT_SECRET')),
-            gmailApi: {
-                user: String(validateEnv('GOOGLE_GMAIL_USER')),
-                refreshToken: String(
-                    validateEnv('GOOGLE_GMAIL_API_REFRESH_TOKEN'),
-                ),
-            },
             redirectUri: appConfiguration.app.frontendLink,
             playgroundRedirectUri: 'http://localhost:8080/api/auth/google/playground',
-        },
-        ethereal: {
-            host: 'smtp.ethereal.email',
-            port: '587',
-            user: String(validateEnv('ETHEREAL_USER')),
-            password: String(validateEnv('ETHEREAL_PASS')),
+            callbackUrl: String(validateEnv('GOOGLE_CALLBACK_URL')),
         },
     };
 };

@@ -1,4 +1,4 @@
-// src/setupdb.ts
+// src/db/setup-database.ts
 import { createConnection, Connection } from 'mysql2/promise';
 import { rootConfig } from '../config/database.root.config';
 import databaseConfig from '../config/database.app.config';
