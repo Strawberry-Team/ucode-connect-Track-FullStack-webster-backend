@@ -35,10 +35,6 @@ class Seeder {
             const { gender, ...userData } = user;
             const createdUser = await this.usersService.createUser(userData);
 
-            if (SEEDS.PRODUCT.THEME_ID === 2) {
-                continue;
-            }
-
             if (SEEDS.USERS.GENERATE_AVATARS) {
                 await this.usersService.updateUserAvatar(
                     createdUser.id,

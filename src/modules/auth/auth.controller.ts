@@ -194,7 +194,6 @@ export class AuthController {
     @ApiResponse({
         status: HttpStatus.OK,
         description: 'Successful login',
-        type: User,
         schema: {
             type: 'object',
             properties: {
@@ -613,13 +612,23 @@ export class AuthController {
     @ApiOperation({ summary: 'Handle Google OAuth2 callback' })
     @ApiResponse({
         status: HttpStatus.OK,
-        description: 'Successfully authenticated with Google. Returns user and tokens.',
+        description: 'Successfully authenticated with Google',
         schema: {
             type: 'object',
             properties: {
-                user: { $ref: getSchemaPath(User) },
-                accessToken: { type: 'string' },
-                refreshToken: { type: 'string' },
+                user: { type: 'object', $ref: getSchemaPath(User) },
+                accessToken: {
+                    type: 'string',
+                    description: 'Access token',
+                    example:
+                        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjIxLCJpc3MiOiIvYXBpL2F1dGgiLCJhdWQiOiIvYXBpIiwiaWF0IjoxNzQ0MTQ1NzQ0LCJleHAiOjE3NDQxNDY2NDR9.re-eZ9_6rsvPJQuE33o1cJK3UwL1ZCxmpLwn9T4-OJE',
+                },
+                refreshToken: {
+                    type: 'string',
+                    description: 'Refresh token',
+                    example:
+                        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjIxLCJub25jZSI6IjU4ZTNmNTFhMGI3MmI0ZTFiMWJhZTJlZDQ2MzFmOTU2IiwiaXNzIjoiL2FwaS9hdXRoIiwiYXVkIjoiL2FwaSIsImlhdCI6MTc0NDE0NTc0NCwiZXhwIjoxNzQ0NzUwNTQ0fQ.SPix1i2LRKESDXt3dKBysArWY0xZIxnJJ4tj8_G9ZyA',
+                },
             },
         },
     })
