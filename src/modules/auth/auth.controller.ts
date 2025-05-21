@@ -639,7 +639,6 @@ export class AuthController {
         description: 'Failed to authenticate with Google.',
     })
     async googleOAuthCallback(@Req() req: ExpressRequest, @Res() res: Response) {
-        console.log(req.user);
         const { accessToken, refreshToken } = req.user as any;
         res.redirect(`http://localhost:3000?accessToken=${accessToken}&refreshToken=${refreshToken}`);
     }
