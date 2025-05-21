@@ -74,6 +74,9 @@ export class AuthService {
             'confirmEmail',
         );
         const link = this.frontUrl + 'auth/confirm-email/' + result;
+        
+        this.logger.log(`Sending confirmation email to ${user.email} with link ${link}`);
+        
         this.emailService.sendConfirmationEmail(
             user.email,
             link,
