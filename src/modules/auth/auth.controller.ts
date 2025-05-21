@@ -8,6 +8,7 @@ import {
     Get,
     Req,
     HttpStatus,
+    Res,
 } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { CreateUserDto } from '../users/dto/create-user.dto';
@@ -19,7 +20,7 @@ import {
     JwtResetPasswordGuard,
     JwtConfirmEmailGuard,
 } from './guards/auth.guards';
-import { Request as ExpressRequest } from 'express';
+import { Request as ExpressRequest, Response } from 'express';
 import { UserId } from 'src/core/decorators/user.decorator';
 import { RefreshTokenPayload } from 'src/core/decorators/refresh-token.decorator';
 import {
@@ -34,6 +35,7 @@ import { User } from '../users/entities/user.entity';
 import { Public } from 'src/core/decorators/public.decorator';
 import { GoogleAuthGuard } from './guards/google-auth.guards';
 import { AuthGuard } from '@nestjs/passport';
+import { log } from 'console';
 
 @Controller('auth')
 @ApiTags('Auth')
@@ -636,7 +638,9 @@ export class AuthController {
         status: HttpStatus.UNAUTHORIZED,
         description: 'Failed to authenticate with Google.',
     })
-    async googleOAuthCallback(@Req() req: ExpressRequest) {
-        return req.user;
+    async googleOAuthCallback(@Req() req: ExpressRequest, @Res() res: Response) {
+        console.log(req.user);
+        const { accessToken, refreshToken } = req.user as any;
+        res.redirect(`http://localhost:3000?accessToken=${accessToken}&refreshToken=${refreshToken}`);
     }
 }
