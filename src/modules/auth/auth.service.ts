@@ -60,7 +60,11 @@ export class AuthService {
 
     async register(createUserDto: CreateUserDto) {
         const user = await this.usersService.createUser(createUserDto);
-        this.sendConfirmationEmail(user);
+        try {
+            this.sendConfirmationEmail(user);
+        } catch (error) {
+            this.logger.error(`Failed to send confirmation email for user ${user.id}`, error.stack);
+        }
         return { user: user };
     }
 
