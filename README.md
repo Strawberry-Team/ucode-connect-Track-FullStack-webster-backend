@@ -27,15 +27,15 @@ In the examples of all commands in the text `<env>` is the name of the environme
     DB_ROOT_USER=root
     DB_ROOT_PASSWORD=root
     ```
-   Also, new DB user `webster_sql` will be created after executing the next command. Credentials of `webster_sql` user can
+   Also, new DB user `flowy_sql` will be created after executing the next command. Credentials of `flowy_sql` user can
    be changed:
     ```
     # Database App Configuration
     DB_APP_HOST=localhost
     DB_APP_PORT=3306
-    DB_APP_USER=webster_sql
+    DB_APP_USER=flowy_sql
     DB_APP_PASSWORD=securepass
-    DB_APP_DATABASE=webster
+    DB_APP_DATABASE=flowy
     ```
    For test purposes use `test` environment: create `.env.test` file by copying the `.env.test.example` file.
 4. Run script for create databases and user:
@@ -65,7 +65,7 @@ In the examples of all commands in the text `<env>` is the name of the environme
 10. Application will be launched on [http://localhost:8080/](http://localhost:8080/).
 
 ## 📬 Postman
-To use the predefined settings for Postman, import the file [webster.postman_collection.json](/docs/webster.postman_collection.json).
+To use the predefined settings for Postman, import the file [flowy.postman_collection.json](/docs/flowy.postman_collection.json).
 
 ![postman_example](/docs/postman.png)
 
@@ -133,7 +133,7 @@ User data for testing:
    ```
 * email:
   ```text
-  test.user@webster.com
+  test.user@flowy.com
   ```
 All users have a password:
 ```text

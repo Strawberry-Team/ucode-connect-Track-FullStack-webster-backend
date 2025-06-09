@@ -13,7 +13,7 @@ export default () => ({
             resetPassword: validateEnv('JWT_RESET_PASSWORD_SECRET'),
         },
         expiresIn: {
-            access: '15m',
+            access: '1d',
             refresh: '7d',
             confirmEmail: '24h',
             resetPassword: '1h',
