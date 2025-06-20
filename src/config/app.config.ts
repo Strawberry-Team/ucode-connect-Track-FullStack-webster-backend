@@ -38,7 +38,9 @@ export default () => {
                 cookie: {
                     key: 'X-CSRF-TOKEN',
                     httpOnly: false,
-                    sameSite: 'strict',
+                    secure: true,
+                    sameSite: 'none',
+                    // sameSite: 'strict',
                 },
                 ignoreMethods: ['GET', 'HEAD', 'OPTIONS'],
             },
