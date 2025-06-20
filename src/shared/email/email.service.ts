@@ -61,13 +61,31 @@ export class EmailService {
         return fs.readFileSync(path.resolve(filePath), 'utf-8');
     }
 
+    // private async createTransport() {
+    //     return nodemailer.createTransport({
+    //         host: this.configService.get<string>('ethereal.host'),
+    //         port: this.configService.get<number>('ethereal.port'),
+    //         auth: {
+    //             user: this.configService.get<string>('ethereal.user'),
+    //             pass: this.configService.get<string>('ethereal.password'),
+    //         },
+    //     });
+    // }
+
+    /**
+     * Creates Gmail transport using OAuth2 authentication.
+     * Uses Google OAuth2 credentials for secure email sending.
+     */
     private async createTransport() {
         return nodemailer.createTransport({
-            host: this.configService.get<string>('ethereal.host'),
-            port: this.configService.get<number>('ethereal.port'),
+            service: 'gmail',
             auth: {
-                user: this.configService.get<string>('ethereal.user'),
-                pass: this.configService.get<string>('ethereal.password'),
+                type: 'OAuth2',
+                user: this.configService.get<string>('google.gmailApi.user'),
+                clientId: this.configService.get<string>('google.gmailApi.clientId'),
+                clientSecret: this.configService.get<string>('google.gmailApi.clientSecret'),
+                refreshToken: this.configService.get<string>('google.gmailApi.refreshToken'),
+                accessToken: this.configService.get<string>('google.gmailApi.accessToken'),
             },
         });
     }
