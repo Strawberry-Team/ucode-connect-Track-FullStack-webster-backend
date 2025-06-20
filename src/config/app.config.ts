@@ -22,7 +22,8 @@ export default () => {
             frontendProtocol,
             frontendHost,
             frontendPort,
-            frontendLink: `${frontendProtocol}://${frontendHost}:${frontendPort}/`,
+            // frontendLink: `${frontendProtocol}://${frontendHost}:${frontendPort}/`,
+            frontendLink: `${frontendProtocol}://${frontendHost}/`,
             nodeEnv: String(validateEnv('APP_NODE_ENV')),
             logo: {
                 path: './public/project',
