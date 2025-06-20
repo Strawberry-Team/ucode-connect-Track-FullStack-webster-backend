@@ -10,6 +10,7 @@ import {
     HttpStatus,
     Res,
 } from '@nestjs/common';
+import { ConfigService } from '@nestjs/config';
 import { AuthService } from './auth.service';
 import { CreateUserDto } from '../users/dto/create-user.dto';
 import { LoginDto } from './dto/login.dto';
@@ -40,7 +41,10 @@ import { log } from 'console';
 @Controller('auth')
 @ApiTags('Auth')
 export class AuthController {
-    constructor(private readonly authService: AuthService) {}
+    constructor(
+        private readonly authService: AuthService,
+        private readonly configService: ConfigService,
+    ) {}
 
     @Get('csrf-token')
     @ApiOperation({ summary: 'Get CSRF token' })
@@ -640,6 +644,7 @@ export class AuthController {
     })
     async googleOAuthCallback(@Req() req: ExpressRequest, @Res() res: Response) {
         const { accessToken, refreshToken } = req.user as any;
-        res.redirect(`http://localhost:3000?accessToken=${accessToken}&refreshToken=${refreshToken}`);
+        const frontendUrl = this.configService.get<string>('app.frontendLink');
+        res.redirect(`${frontendUrl}?accessToken=${accessToken}&refreshToken=${refreshToken}`);
     }
 }
