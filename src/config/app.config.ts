@@ -50,8 +50,8 @@ export default () => {
 
                     key: 'X-CSRF-TOKEN',
                     httpOnly: true,
-                    sameSite: 'strict',
-                    secure: true,
+                    sameSite: frontendProtocol === 'https' ? 'none' : 'strict', // None для HTTPS, Lax для HTTP
+                    secure: frontendProtocol === 'https', // Secure тільки для HTTPS
                     path: '/',
                 },
                 ignoreMethods: ['GET', 'HEAD', 'OPTIONS'],
