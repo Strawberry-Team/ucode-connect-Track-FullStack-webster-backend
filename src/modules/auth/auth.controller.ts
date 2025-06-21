@@ -64,7 +64,11 @@ export class AuthController {
     })
     async findCsrfToken(
         @Req() req: ExpressRequest,
+        @Res() res: Response,
     ): Promise<{ csrfToken: string }> {
+        // Prevent caching of CSRF token
+        res.set('Cache-Control', 'no-store');
+        
         // @ts-ignore
         const token = req.csrfToken();
         return { csrfToken: token };
