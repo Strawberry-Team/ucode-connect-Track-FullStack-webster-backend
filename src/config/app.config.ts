@@ -42,9 +42,9 @@ export default () => {
 
                     // key: '_csrf',
                     key: 'X-CSRF-TOKEN',
-                    httpOnly: true,
+                    httpOnly: false,
                     secure: true, // Cookies are only transmitted via HTTPS
-                    sameSite: 'none',
+                    sameSite: 'None',
                     path: '/',
                 },
                 ignoreMethods: ['GET', 'HEAD', 'OPTIONS'],
