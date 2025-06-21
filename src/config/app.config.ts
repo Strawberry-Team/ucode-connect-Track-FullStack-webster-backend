@@ -40,7 +40,8 @@ export default () => {
                     // httpOnly: false,
                     // sameSite: 'strict',
 
-                    key: '_csrf',
+                    // key: '_csrf',
+                    key: 'X-CSRF-TOKEN',
                     httpOnly: true,
                     secure: true, // Cookies are only transmitted via HTTPS
                     sameSite: 'none',
