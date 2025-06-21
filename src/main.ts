@@ -45,6 +45,7 @@ async function bootstrap() {
         allowedHeaders: corsConfig.allowedHeaders,
         credentials: corsConfig.credentials, // Required to send cookies cross-origin
     });
+    console.log("frontendOrigin", frontendOrigin);
 
     app.use(
         csurf({
