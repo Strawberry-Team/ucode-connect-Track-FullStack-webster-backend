@@ -39,21 +39,41 @@ async function bootstrap() {
     app.useStaticAssets('public');
 
     app.enableCors({
-        //TODO: read more about cors. about Postman.
         origin: frontendOrigin,
         methods: corsConfig.methods,
         allowedHeaders: corsConfig.allowedHeaders,
         credentials: corsConfig.credentials, // Required to send cookies cross-origin
     });
-    console.log("frontendOrigin", frontendOrigin);
+    
+    console.log("=== CORS Configuration ===");
+    console.log("Frontend Origin:", frontendOrigin);
+    console.log("Allowed Methods:", corsConfig.methods);
+    console.log("Allowed Headers:", corsConfig.allowedHeaders);
+    console.log("Credentials:", corsConfig.credentials);
+    console.log("=========================");
+
+    console.log("=== CSRF Configuration ===");
+    console.log("Cookie Key:", csrfConfig.cookie.key);
+    console.log("HttpOnly:", csrfConfig.cookie.httpOnly);
+    console.log("Secure:", csrfConfig.cookie.secure);
+    console.log("SameSite:", csrfConfig.cookie.sameSite);
+    console.log("Path:", csrfConfig.cookie.path);
+    console.log("Domain:", csrfConfig.cookie.domain);
+    console.log("Ignore Methods:", csrfConfig.ignoreMethods);
+    console.log("==========================");
 
     app.use(
         csurf({
             cookie: {
                 key: csrfConfig.cookie.key,
-                httpOnly: csrfConfig.cookie.httpOnly, //Not available via JS
-                secure: nodeEnv === 'production', //Cookies are only transmitted via HTTPS
-                sameSite: csrfConfig.cookie.sameSite, //Cookies will only be sent for requests originating from the same domain (site)
+                // httpOnly: csrfConfig.cookie.httpOnly, //Not available via JS
+                // secure: nodeEnv === 'production', //Cookies are only transmitted via HTTPS
+                // sameSite: csrfConfig.cookie.sameSite, //Cookies will only be sent for requests originating from the same domain (site)
+                httpOnly: csrfConfig.cookie.httpOnly,
+                secure: csrfConfig.cookie.secure,
+                sameSite: csrfConfig.cookie.sameSite,
+                path: csrfConfig.cookie.path,
+                domain: csrfConfig.cookie.domain,
             },
             ignoreMethods: csrfConfig.ignoreMethods,
         }),

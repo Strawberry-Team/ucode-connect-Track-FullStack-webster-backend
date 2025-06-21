@@ -49,10 +49,11 @@ export default () => {
 
 
                     key: 'X-CSRF-TOKEN',
-                    httpOnly: true,
-                    sameSite: frontendProtocol === 'https' ? 'none' : 'strict', // None для HTTPS, Lax для HTTP
-                    secure: frontendProtocol === 'https', // Secure тільки для HTTPS
+                    httpOnly: false, // Має бути false для cross-origin запитів
+                    sameSite: 'none', // Обов'язково 'none' для cross-origin між різними доменами
+                    secure: true, // Обов'язково true для HTTPS cross-origin
                     path: '/',
+                    domain: undefined, // Не встановлюємо домен для cross-origin
                 },
                 ignoreMethods: ['GET', 'HEAD', 'OPTIONS'],
             },

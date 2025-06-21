@@ -47,6 +47,7 @@ export class AuthController {
     ) {}
 
     @Get('csrf-token')
+    @Public()
     @ApiOperation({ summary: 'Get CSRF token' })
     @ApiResponse({
         status: HttpStatus.OK,
@@ -71,6 +72,7 @@ export class AuthController {
         
         // @ts-ignore
         const token = req.csrfToken();
+        res.json({ csrfToken: token });
         return { csrfToken: token };
     }
 
