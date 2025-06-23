@@ -2,7 +2,10 @@
 import * as dotenv from 'dotenv';
 import { validateEnv } from '../core/utils/env.utils';
 
-dotenv.config({ path: '.env.development' });
+// Динамічно завантажуємо конфігурацію залежно від NODE_ENV
+const nodeEnv = process.env.NODE_ENV || 'development';
+const envFile = nodeEnv === 'production' ? '.env.production' : '.env.development';
+dotenv.config({ path: envFile });
 
 export default () => {
     const frontendProtocol = String(validateEnv('APP_FRONTEND_PROTOCOL'));
@@ -22,8 +25,9 @@ export default () => {
             frontendProtocol,
             frontendHost,
             frontendPort,
-            // frontendLink: `${frontendProtocol}://${frontendHost}:${frontendPort}/`,
-            frontendLink: `${frontendProtocol}://${frontendHost}/`,
+            frontendLink: frontendPort && nodeEnv === 'development' 
+                ? `${frontendProtocol}://${frontendHost}:${frontendPort}/`
+                : `${frontendProtocol}://${frontendHost}/`,
             nodeEnv: String(validateEnv('APP_NODE_ENV')),
             logo: {
                 path: './public/project',
@@ -36,15 +40,10 @@ export default () => {
             },
             csrf: {
                 cookie: {
-                    // key: 'X-CSRF-TOKEN',
-                    // httpOnly: false,
-                    // sameSite: 'strict',
-
-                    key: '_csrf',
+                    key: 'X-CSRF-TOKEN',
                     httpOnly: true,
-                    secure: true, // Cookies are only transmitted via HTTPS
-                    sameSite: 'none',
-                    path: '/',
+                    secure: nodeEnv === 'production',
+                    sameSite: 'strict',
                 },
                 ignoreMethods: ['GET', 'HEAD', 'OPTIONS'],
             },
