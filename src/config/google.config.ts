@@ -3,7 +3,10 @@ import * as dotenv from 'dotenv';
 import { validateEnv } from '../core/utils/env.utils';
 import appConfig from './app.config';
 
-dotenv.config({ path: '.env.development' });
+// Dynamically load the configuration based on NODE_ENV
+const nodeEnv = process.env.NODE_ENV || 'development';
+const envFile = nodeEnv === 'production' ? '.env.production' : '.env.development';
+dotenv.config({ path: envFile });
 
 /**
  * Google configuration including OAuth2 and Gmail API settings.
@@ -23,7 +26,9 @@ export default () => {
             clientId: String(validateEnv('GOOGLE_CLIENT_ID')),
             clientSecret: String(validateEnv('GOOGLE_CLIENT_SECRET')),
             redirectUri: appConfiguration.app.frontendLink,
-            playgroundRedirectUri: 'http://localhost:8080/api/auth/google/playground',
+            playgroundRedirectUri: nodeEnv === 'development' 
+                ? 'http://localhost:8080/api/auth/google/playground'
+                : 'https://dead-ellynn-vzharyi-27c1ff99.koyeb.app/api/auth/google/playground',
             callbackUrl: String(validateEnv('GOOGLE_CALLBACK_URL')),
             gmailApi: {
                 user: String(validateEnv('GMAIL_USER')),
