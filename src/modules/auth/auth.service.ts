@@ -218,25 +218,57 @@ export class AuthService {
 
     private async downloadAndSaveAvatar(avatarUrl: string, userId: number): Promise<string | undefined> {
         try {
+            // Add timeout and headers for better compatibility
             const response = await firstValueFrom(
-                this.httpService.get(avatarUrl, { responseType: 'arraybuffer' }),
+                this.httpService.get(avatarUrl, { 
+                    responseType: 'arraybuffer',
+                    timeout: 10000, // 10 seconds timeout
+                    headers: {
+                        'User-Agent': 'Webster-Backend/1.0'
+                    }
+                }),
             );
-            const mime = await import('node-mime');
 
-            const contentType = response.headers['content-type'];
-            if (!contentType) {
-                this.logger.warn(`No content-type header found for avatar from ${avatarUrl} for user ${userId}. Defaulting to jpg.`);
+            // Check file size (maximum 5MB)
+            const maxSizeBytes = 5 * 1024 * 1024; // 5MB
+            if (response.data.byteLength > maxSizeBytes) {
+                this.logger.warn(`Avatar file too large (${response.data.byteLength} bytes) for user ${userId}. Maximum allowed: ${maxSizeBytes} bytes`);
+                return undefined;
             }
-            const extension = contentType ? mime.getExtension(contentType) || 'jpg' : 'jpg';
+
+            const mime = await import('node-mime');
+            const contentType = response.headers['content-type'];
             
-            const filename = `${uuidv4()}.${extension}`;
+            // Підтримувані формати зображень
+            const supportedTypes = ['image/jpeg', 'image/jpg', 'image/png', 'image/webp', 'image/gif'];
+            
+            if (contentType && !supportedTypes.includes(contentType)) {
+                this.logger.warn(`Unsupported image type ${contentType} for user ${userId}. Supported types: ${supportedTypes.join(', ')}`);
+                return undefined;
+            }
+
+            let extension = 'jpg'; // default
+            if (contentType) {
+                const ext = mime.getExtension(contentType);
+                if (ext) {
+                    extension = ext;
+                }
+            }
+            
+            const filename = `user-${userId}-${uuidv4()}.${extension}`;
             const filePath = path.join(this.avatarStoragePath, filename);
 
             await fs.writeFile(filePath, Buffer.from(response.data));
-            this.logger.log(`Avatar for user ${userId} saved as ${filename}`);
+            this.logger.log(`Avatar for user ${userId} saved as ${filename} (${response.data.byteLength} bytes)`);
             return filename;
         } catch (error) {
-            this.logger.error(`Failed to download or save avatar from ${avatarUrl} for user ${userId}`, error.stack);
+            if (error.code === 'ECONNABORTED') {
+                this.logger.error(`Timeout downloading avatar from ${avatarUrl} for user ${userId}`);
+            } else if (error.response?.status) {
+                this.logger.error(`HTTP ${error.response.status} error downloading avatar from ${avatarUrl} for user ${userId}`);
+            } else {
+                this.logger.error(`Failed to download or save avatar from ${avatarUrl} for user ${userId}`, error.stack);
+            }
             return undefined;
         }
     }
@@ -281,17 +313,25 @@ export class AuthService {
             }
         }
 
-        if (justCreated && googleLoginDto.avatarUrl) {
-            this.logger.log(`Attempting to download avatar for new user ${user.email} from ${googleLoginDto.avatarUrl}`);
-            const savedAvatarFileName = await this.downloadAndSaveAvatar(googleLoginDto.avatarUrl, user.id);
-            if (savedAvatarFileName) {
-                try {
-                    await this.usersService.updateUserAvatar(user.id, savedAvatarFileName);
-                    this.logger.log(`Avatar ${savedAvatarFileName} linked to user ${user.id}`);
-                } catch (updateError) {
-                    this.logger.error(`Failed to update user avatar in DB for user ${user.id} with ${savedAvatarFileName}`, updateError.stack);
+        if (googleLoginDto.avatarUrl) {
+            const shouldUpdateAvatar = justCreated || !user.profilePictureName;
+            
+            if (shouldUpdateAvatar) {
+                this.logger.log(`Attempting to download avatar for user ${user.email} from ${googleLoginDto.avatarUrl}`);
+                const savedAvatarFileName = await this.downloadAndSaveAvatar(googleLoginDto.avatarUrl, user.id);
+                if (savedAvatarFileName) {
+                    try {
+                        await this.usersService.updateUserAvatar(user.id, savedAvatarFileName);
+                        this.logger.log(`Avatar ${savedAvatarFileName} linked to user ${user.id}`);
+                    } catch (updateError) {
+                        this.logger.error(`Failed to update user avatar in DB for user ${user.id} with ${savedAvatarFileName}`, updateError.stack);
+                    }
                 }
+            } else {
+                this.logger.log(`User ${user.id} already has avatar ${user.profilePictureName}, skipping download`);
             }
+        } else {
+            this.logger.warn(`No avatar URL provided from Google for user ${user.email}`);
         }
         
         const finalUser = await this.usersService.findUserByIdWithConfidential(user.id);

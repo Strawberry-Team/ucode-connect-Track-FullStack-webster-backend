@@ -6,6 +6,7 @@ getConfirmationEmailTemplate: (
         confirmationLink: string,
         projectName: string,
         fullName: string,
+        frontendLink: string,
     ) => `
 <div style="margin:0; padding:0; background-color:#f4f4f4;">
   <div style="max-width:600px; margin:40px auto; background:#fff; padding:20px; border:1px solid #ddd;">
@@ -29,7 +30,7 @@ getConfirmationEmailTemplate: (
       </div>
       <p>⏳ This link will expire in 7 days.</p>
       <p>If you didn’t sign up for this account, you can safely ignore this email.</p>
-      <p>© 2025 <a href="http://localhost:8080/">${projectName}</a>. All rights reserved.</p>
+      <p>© 2025 <a href="${frontendLink}">${projectName}</a>. All rights reserved.</p>
     </div>
   </div>
 </div>
@@ -39,6 +40,7 @@ getResetPasswordEmailTemplate: (
         resetLink: string,
         projectName: string,
         fullName: string,
+        frontendLink: string,
     ) => `
 <div style="margin:0; padding:0; background-color:#f4f4f4;">
   <div style="max-width:600px; margin:40px auto; background:#fff; padding:20px; border:1px solid #ddd;">
@@ -59,7 +61,7 @@ getResetPasswordEmailTemplate: (
         </a>
       </div>
       <p>If you didn’t request a password reset, please ignore this email.</p>
-      <p>© 2025 <a href="http://localhost:8080/">${projectName}</a>. All rights reserved.</p>
+      <p>© 2025 <a href="${frontendLink}">${projectName}</a>. All rights reserved.</p>
     </div>
   </div>
 </div>

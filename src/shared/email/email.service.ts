@@ -14,6 +14,7 @@ const themeModules = {
 export class EmailService {
     private gmailUser: string;
     private appName: string;
+    private frontendLink: string;
     private logo: any;
     private templates: EmailTemplateInterface;
 
@@ -24,6 +25,7 @@ export class EmailService {
             this.configService.get<string>('google.gmailApi.user'),
         );
         this.appName = String(this.configService.get<string>('app.name'));
+        this.frontendLink = String(this.configService.get<string>('app.frontendLink'));
 
         this.init();
     }
@@ -124,7 +126,8 @@ export class EmailService {
         const html = this.templates.getConfirmationEmailTemplate(
             confirmationLink,
             this.appName,
-            fullName
+            fullName,
+            this.frontendLink,
         );
         await this.sendEmail(
             to,
@@ -134,7 +137,12 @@ export class EmailService {
     }
 
     async sendResetPasswordEmail(to: string, resetLink: string, fullName: string): Promise<void> {
-        const html = this.templates.getResetPasswordEmailTemplate(resetLink, this.appName, fullName);
+        const html = this.templates.getResetPasswordEmailTemplate(
+            resetLink,
+            this.appName,
+            fullName,
+            this.frontendLink,
+        );
         await this.sendEmail(
             to,
             `[Action Required] Password Reset | ${this.appName}`,

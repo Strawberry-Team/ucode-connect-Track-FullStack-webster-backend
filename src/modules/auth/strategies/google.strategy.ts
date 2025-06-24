@@ -41,11 +41,29 @@ export class GoogleStrategy extends PassportStrategy(Strategy, 'google') {
             throw new UnauthorizedException('No email found in Google profile');
         }
 
+        // Get the highest quality photo
+        let avatarUrl: string | undefined;
+        if (photos && photos.length > 0) {
+            // Google usually returns photos in low quality with size s96-c
+            // Replace with s400-c for better quality or remove size for original size
+            const originalPhotoUrl = photos[0].value;
+            
+            // If URL contains size (e.g. s96-c), replace with s400-c for better quality
+            if (originalPhotoUrl.includes('=s96-c') || originalPhotoUrl.includes('=s50-c')) {
+                avatarUrl = originalPhotoUrl.replace(/=s\d+-c/, '=s400-c');
+            } else if (originalPhotoUrl.includes('=s')) {
+                // If there is another size, also replace
+                avatarUrl = originalPhotoUrl.replace(/=s\d+/, '=s400');
+            } else {
+                avatarUrl = originalPhotoUrl;
+            }
+        }
+
         const googleLoginDto: GoogleLoginDto = {
             email: emails[0].value,
             firstName: name?.givenName,
             lastName: name?.familyName,
-            avatarUrl: photos && photos.length > 0 ? photos[0].value : undefined,
+            avatarUrl,
         };
         
         // The authService.googleLogin method should handle user creation/login and token generation
