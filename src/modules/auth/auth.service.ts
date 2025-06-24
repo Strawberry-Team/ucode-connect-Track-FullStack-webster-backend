@@ -236,10 +236,9 @@ export class AuthService {
                 return undefined;
             }
 
-            const mime = await import('node-mime');
             const contentType = response.headers['content-type'];
             
-            // Підтримувані формати зображень
+            // Supported image formats
             const supportedTypes = ['image/jpeg', 'image/jpg', 'image/png', 'image/webp', 'image/gif'];
             
             if (contentType && !supportedTypes.includes(contentType)) {
@@ -247,12 +246,21 @@ export class AuthService {
                 return undefined;
             }
 
+            // Map content types to extensions
+            const getExtensionFromContentType = (contentType: string): string => {
+                const mimeToExtension: Record<string, string> = {
+                    'image/jpeg': 'jpg',
+                    'image/jpg': 'jpg',
+                    'image/png': 'png',
+                    'image/webp': 'webp',
+                    'image/gif': 'gif'
+                };
+                return mimeToExtension[contentType] || 'jpg';
+            };
+
             let extension = 'jpg'; // default
             if (contentType) {
-                const ext = mime.getExtension(contentType);
-                if (ext) {
-                    extension = ext;
-                }
+                extension = getExtensionFromContentType(contentType);
             }
             
             const filename = `user-${userId}-${uuidv4()}.${extension}`;
