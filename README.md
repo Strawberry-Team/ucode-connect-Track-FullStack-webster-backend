@@ -68,13 +68,11 @@
 
 # 🎨 About "Flowy" Platform
 
-**Flowy** is a free beginner-friendly visual content creation web-application.
+**Flowy** is a web-based graphic design platform that provides professional tools for creative design and image editing.
 
-> **Create without limits!**
+Create stunning visual effects with canvas drawing tools, advanced image processing features, layer management, and seamless workflows in your browser.
 
-Create captivating visuals instantly and easily.
-
-Unleash your creativity easily - no experience required!
+Built on modern web technologies, Flowy provides a comprehensive design experience with no experience required.
 
 Here is a [link](https://docs.google.com/presentation/d/1bVpLPwLnU-Q78mZlx9RJoXGA6eXgI3dE/edit?usp=sharing&ouid=109902939512595211399&rtpof=true&sd=true) to the presentation file.</p>
 
