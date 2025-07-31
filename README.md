@@ -44,6 +44,8 @@
    </h3>
 </div>
 
+
+
 # 📑 Table of Contents
 - [🎨 About "Flowy" Platform](#-about-flowy-platform)
 - [🧑‍💻 Team](#-team)
@@ -54,17 +56,28 @@
   - [📧 Email System](#-email-system)
   - [🛡️ Security Features](#️-security-features)
   - [🔧 API Documentation](#-api-documentation)
+- [🧶 Use case diagram](#-use-case-diagram)
+- [🧲 Activity diagram](#-activity-diagram)
+  - [👤 User Registaion](#-user-registaion)
+  - [🎞 Action History System](#-action-history-system)
+  - [📁 File Export](#-file-export)
+- [🚚 Deployment Diagram](#-deployment-diagram)
+- [📦 Database Diagram](#-database-diagram)
 - [⚙️ Requirements and Dependencies](#️-requirements-and-dependencies)
 - [🚀 How to Run the Solution](#-how-to-run-the-solution)
 - [🐋 Docker](#-docker)
-- [📫 Email Service](#-email-service)
+- [📫 Mailing Service](#-mailing-service)
+  - [Gmail API Configuration](#-gmail-api-configuration)
   - [Development Testing with Ethereal](#development-testing-with-ethereal)
+  - [Email Templates](#-email-templates)
 - [🔁 REST API documentation](#-rest-api-documentation)
   - [API Features](#api-features)
 - [📬 Postman](#-postman)
 - [📦 Migrations](#-migrations)
   - [Migration Commands](#migration-commands)
   - [Seeding with fake data](#seeding-with-fake-data)
+
+
 
 # 🎨 About "Flowy" Platform
 
@@ -81,6 +94,8 @@ Here is a [link](https://docs.google.com/presentation/d/1bVpLPwLnU-Q78mZlx9RJoXG
 ![Mobile and Tablet View](https://github.com/user-attachments/assets/8c4cd376-9df6-4aff-8ebd-161f438b4f31)
 ![Horizontal Tablet View](https://github.com/user-attachments/assets/ac377e60-f274-4335-9ac9-e0f611650683)
 ![Vertical Tablet View](https://github.com/user-attachments/assets/578fdbf0-f824-42da-838a-ea5a887e9471)
+
+
 
 # 🧑‍💻 Team
 <div>
@@ -102,6 +117,8 @@ Here is a [link](https://docs.google.com/presentation/d/1bVpLPwLnU-Q78mZlx9RJoXG
     </table>
 </div><br />
 
+
+
 # 🖼 About "Flowy" Backend
 
 "Flowy" Backend is built on Node.js with NestJS framework, utilizing TypeScript for type safety and maintainability. The platform integrates Prisma ORM with MySQL database, provides secure authentication with JWT tokens and Google OAuth, email services with Nodemailer, comprehensive API documentation with Swagger, containerization with Docker.
@@ -115,6 +132,8 @@ Here is a [link](https://docs.google.com/presentation/d/1bVpLPwLnU-Q78mZlx9RJoXG
 * Postman optimizes the process of API testing and documentation creation.
 
 The selected combination of technologies provides a balanced solution that optimally combines performance, reliability, and ease of development. 
+
+
 
 # 🎯 Features and Functionality
 
@@ -156,6 +175,36 @@ The selected combination of technologies provides a balanced solution that optim
 - Detailed request/response schemas
 - API versioning and security documentation
 
+
+
+# 🧶 Use case diagram
+![Use case diagram](https://github.com/user-attachments/assets/2b4985d7-2b67-44b7-bb2d-6ee24aec5120)
+
+
+
+# 🧲 Activity diagram
+
+### 👤 User Registaion
+![Activity diagram - User Registaion](https://github.com/user-attachments/assets/208d8322-0c4a-49fa-8f1b-6dd7024b2357)
+
+### 🎞 Action History System
+![Activity diagram - Action History System](https://github.com/user-attachments/assets/1c396bf0-5619-4cb4-9b83-c748d3d1dfaf)
+
+### 📁 File Export 
+![Activity diagram - File Export](https://github.com/user-attachments/assets/30c6ae64-f19b-4bbd-a0bd-1881108e9b02)
+
+
+
+# 🚚 Deployment Diagram
+![Deployment diagram](https://github.com/user-attachments/assets/851a2b61-1eba-4285-9748-30402830bd04)
+
+
+
+# 📦 Database Diagram
+![Database Diagram](https://github.com/user-attachments/assets/0927ecb8-b356-479f-b1eb-2e8b92864018)
+
+
+
 # ⚙️ Requirements and Dependencies
 
 Before starting, ensure the required technologies are installed.
@@ -163,6 +212,8 @@ Before starting, ensure the required technologies are installed.
 - **Node.JS** >= v22
 - **NPM** >= v10
 - **MySQL** >= 8.0
+
+
 
 # 🚀 How to Run the Solution
 
@@ -222,6 +273,8 @@ In the examples of all commands in the text `<env>` is the name of the environme
     ```
 10. Application will be launched on [http://localhost:8080/](http://localhost:8080/).
 
+
+
 # 🐋 Docker
 
 Environment variables are taken from `.env.development` file. You can start containers with the command:
@@ -241,23 +294,49 @@ To stop and delete containers, networks, and associated resources (with volumes)
 docker-compose down -v
 ```
 
-# 📫 Email Service
+
+
+# 📫 Mailing Service
+
+The application uses **Gmail API** for production email delivery with OAuth2 authentication, providing reliable and secure email sending capabilities.
+
+### Gmail API Configuration
+
+The application is configured to use Gmail API for sending emails in production. To set up Gmail integration:
+
+1. Google Cloud Console Setup:
+   - Create a project in [Google Cloud Console](https://console.cloud.google.com/)
+   - Enable Gmail API for your project
+   - Create OAuth 2.0 credentials (Client ID and Client Secret)
+   - Add your redirect URI for OAuth flow
+2. Environment Configuration:
+   Configure the following variables in your `.env.development` file:
+   ```env
+   GOOGLE_GMAIL_USER=your-gmail@gmail.com
+   GOOGLE_GMAIL_API_REFRESH_TOKEN=your_refresh_token
+   GOOGLE_CLIENT_ID=your_client_id
+   GOOGLE_CLIENT_SECRET=your_client_secret
+   GOOGLE_OAUTH_REDIRECT_URI=your_redirect_uri
+   ```
+3. OAuth2 Flow:
+   - Use Google OAuth2 flow to obtain refresh token
+   - The application automatically refreshes access tokens as needed
 
 The application uses email services for user communication and verification processes.
 
 ### Development Testing with Ethereal
+For development and testing purposes, you can use [Ethereal Email](https://ethereal.email/) - a fake SMTP service where messages are captured but never delivered.
 
-For development and testing purposes, the application uses [Ethereal Email](https://ethereal.email/) - a fake SMTP service where messages are captured but never delivered.
+Default test credentials you can find in [.env.development.example](.env.development.example):
+* login: ```corrine.strosin80@ethereal.email```
+* password: ```EEshmbDQ6mKBzprKVK```
 
-Default test credentials:
-* login:
-    ```text
-    corrine.strosin80@ethereal.email
-    ```
-* password:
-    ```text
-    EEshmbDQ6mKBzprKVK
-    ```
+### Email Templates
+Email types supported:
+- Account email confirmation
+- Password reset notifications
+
+
 
 # 🔁 REST API documentation
 
@@ -275,6 +354,8 @@ The comprehensive API documentation is available at [http://localhost:8080/api](
 - **File Upload Support**: Endpoints for avatar uploads
 - **Real-time Validation**: Request validation with detailed error messages
 
+
+
 # 📬 Postman
 
 To use the predefined settings for Postman, import the file [flowy.postman_collection.json](/docs/flowy.postman_collection.json).
@@ -284,6 +365,8 @@ The collection includes comprehensive API endpoint definitions organized into ca
 - **Users**: User management and profile operations
 
 ![postman_example](/docs/postman.png)
+
+
 
 # 📦 Migrations
 
