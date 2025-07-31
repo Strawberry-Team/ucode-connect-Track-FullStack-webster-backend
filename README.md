@@ -1,4 +1,149 @@
-## ⚙️ Requirements and Dependencies
+<div align="center">
+   <p align="center">
+      <a href="https://ucode.world/en/" target="_blank">
+         <img src="./public/project/ucode_it_academy_logo.svg" height="100px" alt="ucode_logo">
+      </a>
+   </p>
+
+   <img src="./public/project/logo.png" width="200" />
+   <h1 align="center">Flowy</h1>
+
+<p align="center">
+   <img src="https://img.shields.io/badge/TypeScript-3178C6?logo=typescript&logoColor=white" alt="TypeScript" />
+   <img src="https://img.shields.io/badge/Node.js-339933?logo=nodedotjs&logoColor=white" alt="Node.js" />
+   <img src="https://img.shields.io/badge/NestJS-E0234E?logo=nestjs&logoColor=white" alt="NestJS" />
+   <img src="https://img.shields.io/badge/Express-000000?logo=express&logoColor=white" alt="Express" />
+   <img src="https://img.shields.io/badge/MySQL-4479A1?logo=mysql&logoColor=white" alt="MySQL" />
+   <img src="https://img.shields.io/badge/Prisma-2D3748?logo=prisma&logoColor=white" alt="Prisma" />
+   <img src="https://img.shields.io/badge/Swagger-85EA2D?logo=swagger&logoColor=white" alt="Swagger" />
+   <img src="https://img.shields.io/badge/Docker-2496ED?logo=docker&logoColor=white" alt="Docker" />
+   <img src="https://img.shields.io/badge/Jest-C21325?logo=jest&logoColor=white" alt="Jest" />
+   <img src="https://img.shields.io/badge/JWT-000000?logo=json-web-token&logoColor=white" alt="JSON Web Token" />
+   <img src="https://img.shields.io/badge/Bcrypt-003087?logo=bcrypt&logoColor=white" alt="Bcrypt" />
+   <img src="https://img.shields.io/badge/Passport-34E27A?logo=passport&logoColor=white" alt="Passport" />
+   <img src="https://img.shields.io/badge/class_validator-FF6F61?logo=class-validator&logoColor=white" alt="class-validator" />
+   <img src="https://img.shields.io/badge/class_transformer-FF6F61?logo=class-transformer&logoColor=white" alt="class-transformer" />
+   <img src="https://img.shields.io/badge/Nodemailer-0095FF?logo=nodemailer&logoColor=white" alt="Nodemailer" />
+   <img src="https://img.shields.io/badge/cookie_parser-000000?logo=cookiecutter&logoColor=white" alt="cookie-parser" />
+   <img src="https://img.shields.io/badge/csurf-000000?logo=csurf&logoColor=white" alt="csurf" />
+   <img src="https://img.shields.io/badge/Multer-2C3E50?logo=multer&logoColor=white" alt="Multer" />
+   <img src="https://img.shields.io/badge/ESLint-4B32C3?logo=eslint&logoColor=white" alt="ESLint" />
+   <img src="https://img.shields.io/badge/Prettier-F7B93E?logo=prettier&logoColor=black" alt="Prettier" />
+</p>
+
+   <h3>
+      <p align="center">
+         <sub><i>
+            ucode connect webster "Flowy" is the project of ucode connect the Track FullStack programming bootcamp<br />
+            lasting 6 weeks (May 5, 2025 - June 16, 2025),<br />where the NestJS with TypeScript and React with KonvaJS were used to develop the service for graphic design.<br /><br />
+            The purpose: create a service for graphic design that allows every user without design skills to create and process images<br >
+            using the whole cycle of Challenge Based Learning framework with a team.
+         </i></sub>
+      </p>
+   </h3>
+</div>
+
+# 📑 Table of Contents
+- [🎨 About "Flowy" Platform](#-about-flowy-platform)
+- [🧑‍💻 Team](#-team)
+- [🖼 About "Flowy" Backend](#-about-flowy-backend)
+- [🎯 Features and Functionality](#-features-and-functionality)
+  - [🔐 Authentication & Authorization](#-authentication--authorization)
+  - [👥 User Management](#-user-management)
+  - [📧 Email System](#-email-system)
+  - [🛡️ Security Features](#️-security-features)
+  - [🔧 API Documentation](#-api-documentation)
+- [⚙️ Requirements and Dependencies](#️-requirements-and-dependencies)
+- [🚀 How to Run the Solution](#-how-to-run-the-solution)
+- [🐋 Docker](#-docker)
+- [📫 Email Service](#-email-service)
+  - [Development Testing with Ethereal](#development-testing-with-ethereal)
+- [🔁 REST API documentation](#-rest-api-documentation)
+  - [API Features](#api-features)
+- [📬 Postman](#-postman)
+- [📦 Migrations](#-migrations)
+  - [Migration Commands](#migration-commands)
+  - [Seeding](#seeding)
+- [🪲 Testing](#-testing)
+- [👤 Fake Data](#-fake-data)
+
+# 🎨 About "Flowy" Platform
+
+**Flowy** is a free beginner-friendly visual content creation web-application.
+
+> **Create without limits!**
+
+Create captivating visuals instantly and easily.
+
+Unleash your creativity easily - no experience required!
+
+# 🧑‍💻 Team
+<div>
+    <table width="100%" border="0" cellpadding="1" align="center">  
+        <tr>
+            <td align="center">
+                <a href="https://github.com/InessaRepeshko">
+                    <img src="https://avatars.githubusercontent.com/u/80609514?v=4?s=100" width="150px;" alt="Inessa Repeshko"/><br />
+                    <sub><b>Inessa Repeshko</b></sub>
+                </a><br />
+            </td>
+            <td align="center">
+                <a href="https://github.com/laskevych">
+                    <img src="https://avatars.githubusercontent.com/u/29709878?v=4?s=100" width="150px;" alt="Andrew Laskevych"/><br />
+                    <sub><b>Andrew Laskevych</b></sub>
+                </a><br />
+            </td>
+        </tr>
+    </table>
+</div><br />
+
+# 🖼 About "Flowy" Backend
+
+"Flowy" Backend is built on Node.js with NestJS framework, utilizing TypeScript for type safety and maintainability. The platform integrates Prisma ORM with MySQL database, provides secure authentication with JWT tokens and Google OAuth, email services with Nodemailer, comprehensive API documentation with Swagger, containerization with Docker, and robust testing with Jest.
+
+The backend follows modular architecture principles, implementing clean code practices and providing extensive validation and security features for modern web applications.
+
+# 🎯 Features and Functionality
+
+**Flowy Backend** provides a comprehensive set of features for modern web applications:
+
+### 🔐 Authentication & Authorization
+- User Registration & Login with email verification
+- Google OAuth 2.0 integration for social authentication
+- JWT-based authentication with access and refresh tokens
+- Password reset functionality with secure token validation
+- Role-based access control for different user types
+- Account email confirmation system
+- Refresh token management with nonces for enhanced security
+
+### 👥 User Management
+- User profile management with avatar upload support
+- Account settings and password management
+- User dashboard with personalized content
+- Secure password hashing using bcrypt
+- Account ownership guards for secure access control
+
+### 📧 Email System
+- Email confirmation for account verification
+- Password reset emails with secure links
+- Ethereal email integration for development testing
+
+### 🛡️ Security Features
+- CSRF protection with custom filters
+- Request validation with comprehensive validators
+- Input sanitization and type checking
+- Secure password hashing using bcrypt
+- Rate limiting and security headers
+- Environment-based configuration management
+- JWT token cleanup and security
+
+### 🔧 API Documentation
+- Comprehensive Swagger documentation for all endpoints
+- Interactive API explorer at `/api` endpoint
+- Detailed request/response schemas
+- API versioning and security documentation
+
+# ⚙️ Requirements and Dependencies
 
 Before starting, ensure the required technologies are installed.
 
@@ -6,13 +151,14 @@ Before starting, ensure the required technologies are installed.
 - **NPM** >= v10
 - **MySQL** >= 8.0
 
-## 🚀 How to Run the Solution
+# 🚀 How to Run the Solution
 
 In the examples of all commands in the text `<env>` is the name of the environment to perform the migration, e.g. `dev` or `prod`.
 
 1. Clone this repository and move to the project directory:
    ```bash
-   git clone <repository-url>
+   git clone <repository-url> flowy-backend
+   cd flowy-backend
    ```
 2. Install all dependencies:
    ```bash
@@ -27,8 +173,7 @@ In the examples of all commands in the text `<env>` is the name of the environme
     DB_ROOT_USER=root
     DB_ROOT_PASSWORD=root
     ```
-   Also, new DB user `flowy_sql` will be created after executing the next command. Credentials of `flowy_sql` user can
-   be changed:
+   Also, new DB user `flowy_sql` will be created after executing the next command. Credentials of `flowy_sql` user can be changed:
     ```
     # Database App Configuration
     DB_APP_HOST=localhost
@@ -64,36 +209,34 @@ In the examples of all commands in the text `<env>` is the name of the environme
     ```
 10. Application will be launched on [http://localhost:8080/](http://localhost:8080/).
 
-## 📬 Postman
-To use the predefined settings for Postman, import the file [flowy.postman_collection.json](/docs/flowy.postman_collection.json).
+# 🐋 Docker
 
-![postman_example](/docs/postman.png)
-
-## 🐋 Docker
 Environment variables are taken from `.env.development` file. You can start containers with the command:
-```
+```bash
 docker-compose --env-file .env.development up -d
 ```
 To view a list of containers:
-```
+```bash
 docker ps -a
 ```
 To stop running containers:
-```
+```bash
 docker-compose stop
 ```
 To stop and delete containers, networks, and associated resources (with volumes):
-```
+```bash
 docker-compose down -v
 ```
 
-## 📫 Mailing Service
+# 📫 Email Service
 
-[Ethereal](https://ethereal.email/) is a fake SMTP service, mostly aimed at Nodemailer and EmailEngine users (but not
-limited to). It's a completely free anti-transactional email service where messages never get delivered.
-To view the letter that the user will receive, you need to log in to this service using a test login and password.
-Default credentials you can find in `.env.development.example` file or:
+The application uses email services for user communication and verification processes.
 
+### Development Testing with Ethereal
+
+For development and testing purposes, the application uses [Ethereal Email](https://ethereal.email/) - a fake SMTP service where messages are captured but never delivered.
+
+Default test credentials:
 * login:
     ```text
     corrine.strosin80@ethereal.email
@@ -103,26 +246,67 @@ Default credentials you can find in `.env.development.example` file or:
     EEshmbDQ6mKBzprKVK
     ```
 
-## 🔁 REST API documentation
+# 🔁 REST API documentation
 
-The documentation of all available endpoints can be found [http://localhost:8080/api](http://localhost:8080/api).
-The [Swagger](https://swagger.io/) library is used.
+The comprehensive API documentation is available at [http://localhost:8080/api](http://localhost:8080/api) and provides:
 
-## Migrations
+- **Interactive API Explorer**: Built with Swagger UI, allowing you to test endpoints directly in the browser
+- **Complete Endpoint Coverage**: Documentation for all available REST endpoints including authentication and users
+- **Security Documentation**: Clear indication of which endpoints require JWT authentication and CSRF tokens
+- **Request/Response Schemas**: Detailed schema definitions with examples for all data structures
+- **Error Response Documentation**: Comprehensive error codes and response formats
 
-1. To create new migration run command:
+### API Features:
+- **JWT Authentication**: Bearer token authentication for protected endpoints
+- **CSRF Protection**: Cross-Site Request Forgery protection for state-changing operations
+- **File Upload Support**: Endpoints for avatar uploads
+- **Real-time Validation**: Request validation with detailed error messages
+
+# 📬 Postman
+
+To use the predefined settings for Postman, import the file [flowy.postman_collection.json](/docs/flowy.postman_collection.json).
+
+![postman_example](/docs/postman.png)
+
+The collection includes comprehensive API endpoint definitions organized into categories such as:
+- **Auth**: Authentication endpoints (login, register, password reset)
+- **Users**: User management and profile operations
+
+# 📦 Migrations
+
+### Migration Commands
+
+1. Create new migration:
     ```bash
     npm run migrate:create --name <migration_name>
     ```
-2. To refresh all data at the database run command:
+2. Apply migrations:
+    ```bash
+    npm run migrate
+    ```
+3. Generate Prisma client:
+    ```bash
+    npm run migrate:generate
+    ```
+4. Seed database with demo data:
+    ```bash
+    npm run migrate:seed
+    ```
+5. Reset and refresh database:
     ```bash
     npm run migrate:refresh
     ```
 
-## 👤 Fake Data
-To fill the database with demo data of users, companies, events and tickets, run the following command:
+### 👤 Seeding with Fake Data
+
+The seeding system creates comprehensive demo data including:
+- Users with verified accounts
+- Refresh token nonces for security testing
+- Email templates and configurations
+
+To fill the database with demo data of users and system entities, run the following command:
 ```bash
-npm run migarte:seed
+npm run migrate:seed
 ```
 Here is the fake data for presentations.
 
@@ -139,3 +323,7 @@ All users have a password:
 ```text
 Password123!$
 ```
+
+---
+
+© Inessa Repeshko. 2025
