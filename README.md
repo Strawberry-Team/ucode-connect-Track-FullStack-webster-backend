@@ -77,6 +77,14 @@ Create captivating visuals instantly and easily.
 
 Unleash your creativity easily - no experience required!
 
+Here is a [link](https://docs.google.com/presentation/d/1bVpLPwLnU-Q78mZlx9RJoXGA6eXgI3dE/edit?usp=sharing&ouid=109902939512595211399&rtpof=true&sd=true) to the presentation file.</p>
+
+![Description](https://github.com/user-attachments/assets/3ff0913a-3693-4e24-a695-58422583221b)
+![Desktop View](https://github.com/user-attachments/assets/75e530bc-46e1-404a-9421-e5204752a5f1)
+![Mobile and Tablet View](https://github.com/user-attachments/assets/8c4cd376-9df6-4aff-8ebd-161f438b4f31)
+![Horizontal Tablet View](https://github.com/user-attachments/assets/ac377e60-f274-4335-9ac9-e0f611650683)
+![Vertical Tablet View](https://github.com/user-attachments/assets/578fdbf0-f824-42da-838a-ea5a887e9471)
+
 # 🧑‍💻 Team
 <div>
     <table width="100%" border="0" cellpadding="1" align="center">  
