@@ -37,8 +37,8 @@
          <sub><i>
             ucode connect webster "Flowy" is the project of ucode connect the Track FullStack programming bootcamp<br />
             lasting 6 weeks (May 5, 2025 - June 16, 2025),<br />where the NestJS with TypeScript and React with KonvaJS were used to develop the service for graphic design.<br /><br />
-            The purpose: create a service for graphic design that allows every user without design skills to create and process images<br >
-            using the whole cycle of Challenge Based Learning framework with a team.
+            The purpose: create a service for graphic design that allows every user without design skills to create and <br >
+            process images using the whole cycle of Challenge Based Learning framework with a team.
          </i></sub>
       </p>
    </h3>
@@ -281,11 +281,11 @@ The comprehensive API documentation is available at [http://localhost:8080/api](
 
 To use the predefined settings for Postman, import the file [flowy.postman_collection.json](/docs/flowy.postman_collection.json).
 
-![postman_example](/docs/postman.png)
-
 The collection includes comprehensive API endpoint definitions organized into categories such as:
 - **Auth**: Authentication endpoints (login, register, password reset)
 - **Users**: User management and profile operations
+
+![postman_example](/docs/postman.png)
 
 # 📦 Migrations
 
