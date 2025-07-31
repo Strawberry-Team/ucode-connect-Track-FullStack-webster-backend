@@ -49,7 +49,7 @@
 # 📑 Table of Contents
 - [🎨 About "Flowy" Platform](#-about-flowy-platform)
 - [🧑‍💻 Team](#-team)
-- [🖼 About "Flowy" Backend](#-about-flowy-backend)
+- [🌊 About "Flowy" Backend](#-about-flowy-backend)
 - [🎯 Features and Functionality](#-features-and-functionality)
   - [🔐 Authentication & Authorization](#-authentication--authorization)
   - [👥 User Management](#-user-management)
@@ -119,7 +119,7 @@ Here is a [link](https://docs.google.com/presentation/d/1bVpLPwLnU-Q78mZlx9RJoXG
 
 
 
-# 🖼 About "Flowy" Backend
+# 🌊 About "Flowy" Backend
 
 "Flowy" Backend is built on Node.js with NestJS framework, utilizing TypeScript for type safety and maintainability. The platform integrates Prisma ORM with MySQL database, provides secure authentication with JWT tokens and Google OAuth, email services with Nodemailer, comprehensive API documentation with Swagger, containerization with Docker.
 
