@@ -18,6 +18,7 @@
    <img src="https://img.shields.io/badge/Swagger-85EA2D?logo=swagger&logoColor=white" alt="Swagger" />
    <img src="https://img.shields.io/badge/Docker-2496ED?logo=docker&logoColor=white" alt="Docker" />
    <img src="https://img.shields.io/badge/Jest-C21325?logo=jest&logoColor=white" alt="Jest" />
+   <img src="https://img.shields.io/badge/Faker.js-1565C0?logo=faker&logoColor=white" alt="Faker.js" />
    <img src="https://img.shields.io/badge/JWT-000000?logo=json-web-token&logoColor=white" alt="JSON Web Token" />
    <img src="https://img.shields.io/badge/Bcrypt-003087?logo=bcrypt&logoColor=white" alt="Bcrypt" />
    <img src="https://img.shields.io/badge/Passport-34E27A?logo=passport&logoColor=white" alt="Passport" />
@@ -63,9 +64,7 @@
 - [📬 Postman](#-postman)
 - [📦 Migrations](#-migrations)
   - [Migration Commands](#migration-commands)
-  - [Seeding](#seeding)
-- [🪲 Testing](#-testing)
-- [👤 Fake Data](#-fake-data)
+  - [Seeding with fake data](#seeding-with-fake-data)
 
 # 🎨 About "Flowy" Platform
 
@@ -107,9 +106,17 @@ Here is a [link](https://docs.google.com/presentation/d/1bVpLPwLnU-Q78mZlx9RJoXG
 
 # 🖼 About "Flowy" Backend
 
-"Flowy" Backend is built on Node.js with NestJS framework, utilizing TypeScript for type safety and maintainability. The platform integrates Prisma ORM with MySQL database, provides secure authentication with JWT tokens and Google OAuth, email services with Nodemailer, comprehensive API documentation with Swagger, containerization with Docker, and robust testing with Jest.
+"Flowy" Backend is built on Node.js with NestJS framework, utilizing TypeScript for type safety and maintainability. The platform integrates Prisma ORM with MySQL database, provides secure authentication with JWT tokens and Google OAuth, email services with Nodemailer, comprehensive API documentation with Swagger, containerization with Docker.
 
-The backend follows modular architecture principles, implementing clean code practices and providing extensive validation and security features for modern web applications.
+* NestJS provides a modular architecture with built-in TypeScript support, a decorator approach, and a dependency injection system.
+* Prisma provides a type-safe approach to working with databases and automatic generation of TypeScript types based on the schema.
+* JWT and Passport implement authentication with Google OAuth support. 
+* Swagger provides automatic API documentation generation.
+* MySQL guarantees reliable and efficient data storage with transaction support and scalability. 
+* Docker ensures consistency in the development environment and simplifies deployment processes. 
+* Postman optimizes the process of API testing and documentation creation.
+
+The selected combination of technologies provides a balanced solution that optimally combines performance, reliability, and ease of development. 
 
 # 🎯 Features and Functionality
 
@@ -256,7 +263,7 @@ Default test credentials:
 
 # 🔁 REST API documentation
 
-The comprehensive API documentation is available at [http://localhost:8080/api](http://localhost:8080/api) and provides:
+The comprehensive API documentation is available at [http://localhost:8080/api](http://localhost:8080/api) or [https://flowy-photoshop.onrender.com/api](https://flowy-photoshop.onrender.com/api) and provides:
 
 - **Interactive API Explorer**: Built with Swagger UI, allowing you to test endpoints directly in the browser
 - **Complete Endpoint Coverage**: Documentation for all available REST endpoints including authentication and users
@@ -305,7 +312,7 @@ The collection includes comprehensive API endpoint definitions organized into ca
     npm run migrate:refresh
     ```
 
-### 👤 Seeding with Fake Data
+### 👤 Seeding with fake data
 
 The seeding system creates comprehensive demo data including:
 - Users with verified accounts
